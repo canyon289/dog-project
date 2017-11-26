@@ -14184,20 +14184,14 @@ SUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## (Optional) TODO: Report the performance of another  </span>
-<span class="c1">## face detection algorithm on the LFW dataset</span>
-<span class="c1">### Feel free to use as many code cells as needed.</span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One way to detect humans in miages that doesn't require a clearly presented face is to train a model to detect humans in pictures. However because this is model is for fun application that "predicts" the breed of a human, I think it's fine a user or two gets frustrated. If this however was a classifier used for security screening at airports, or borders  for example, then it would not be reasonable expectation that frustrated users and failed human recognition is ok.</p>
 
 </div>
 </div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -15098,6 +15092,16 @@ _________________________________________________________________
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>I started with an initial model that only had one Convolutional Layer, one Max Pooling Layer, and a fully connected layer. This model turned out to work suprisingly well scoring about 6%. After that I tried more a series of more complicated architectures, but all scored worse than the original model, additionally each took more time to train as well.</p>
+<p>The model that performed the best was the fourth iteration which was one convoluation layer, a leaky relu layer, a max pooling layer, and a fully connected layer which outputted softmax probabilities. I believe this architecture worked well because the Convolutional layer was 16 layers deep with a kernel size of 16, and a stride of one. It's my guess that the large kernel size with multiple layers allowed the convolutions to find features that spanned across larger areas of the image.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
 <p><a id='step4'></a></p>
 <h2 id="Step-4:-Use-a-CNN-to-Classify-Dog-Breeds">Step 4: Use a CNN to Classify Dog Breeds<a class="anchor-link" href="#Step-4:-Use-a-CNN-to-Classify-Dog-Breeds">&#182;</a></h2><p>To reduce training time without sacrificing accuracy, we show you how to train a CNN using transfer learning.  In the following step, you will get a chance to use transfer learning to train your own CNN.</p>
@@ -15818,6 +15822,17 @@ Epoch 20/20
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The final implementation was built for simplicity for three reasons. One is that Resnet 50 already does a really good job of class predictions so I had assumed it wouldn't need much more help, another was that I found this blog post by the Udacity Instructor detailing how Global Average Pooling was becoming more useful in practice, and lastly from my own implementations of CNNs from scratch I found that my models with less layers tended to do better.</p>
+<p>Source
+<a href="https://alexisbcook.github.io/2017/global-average-pooling-layers-for-object-localization/">https://alexisbcook.github.io/2017/global-average-pooling-layers-for-object-localization/</a></p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
